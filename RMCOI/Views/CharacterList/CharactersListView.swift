@@ -16,7 +16,7 @@ struct CharactersListView: View {
         WithPerceptionTracking {
             switch store.contentState {
             case .intro:
-                IntroImageView { store.send(.enterCharactersList) }
+                IntroView { store.send(.enterCharactersList) }
             case .loading:
                 ProgressView()
                     .scaleEffect(1.2)
@@ -60,7 +60,7 @@ struct CharactersListView: View {
                 } destination: { store in
                     CharacterDetailsView(store: store)
                 } label: {
-                    CharacterCellView(character)
+                    CharacterCellView(character, isFavorite: store.favoriteIds.contains(character.id))
                 }
             }
         }

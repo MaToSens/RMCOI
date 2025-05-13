@@ -19,7 +19,7 @@ struct CircularIconView: View {
         self.font = font
     }
     
-    public var body: some View {
+    var body: some View {
         Image(systemName: systemName)
             .font(font)
             .padding(10)
