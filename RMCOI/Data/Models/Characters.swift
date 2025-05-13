@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Codable, Equatable, Identifiable {
+struct Character: APIObject, Identifiable {
     let id: Int
     let name, status, species, type: String
     let gender: String
