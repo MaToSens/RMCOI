@@ -24,6 +24,7 @@ struct CharacterDetailsView: View {
                 buildEpisodesSection()
             }
         }
+        .onAppear { store.send(.onAppear) }
         .ignoresSafeArea(edges: .top)
         .toolbar(content: buildToolbarContent)
         .navigationBarBackButtonHidden()
@@ -81,8 +82,8 @@ struct CharacterDetailsView: View {
             store.send(.dismissButtonTapped)
         }
         
-        ToolbarCircularButton(systemName: "heart", placement: .topBarTrailing) {
-            // Action
+        ToolbarCircularButton(systemName: store.isFavorite ? "heart.fill" : "heart", placement: .topBarTrailing) {
+            store.send(.toggleFavorite)
         }
     }
 }

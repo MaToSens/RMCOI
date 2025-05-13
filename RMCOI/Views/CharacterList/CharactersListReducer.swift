@@ -22,6 +22,7 @@ struct CharactersListReducer {
     struct State: Equatable {
         var info: Info
         var contentState: ContentState
+        var favoriteIds: Set<Int>
         var hasMorePages: Bool { info.next != nil }
         
         // Filter
@@ -35,6 +36,7 @@ struct CharactersListReducer {
         init(
             info: Info = .init(),
             contentState: ContentState = .intro,
+            favoriteIds: Set<Int> = [],
             filters: CharactersFilters = .init(),
             searchTerm: String = "",
             isFiltersPanelVisible: Bool = false,
@@ -42,6 +44,7 @@ struct CharactersListReducer {
         ) {
             self.info = info
             self.contentState = contentState
+            self.favoriteIds = favoriteIds
             self.filters = filters
             self.searchTerm = searchTerm
             self.isFiltersPanelVisible = isFiltersPanelVisible
@@ -56,6 +59,7 @@ struct CharactersListReducer {
         // Lifecycle actions
         case enterCharactersList
         case returnToIntro
+        case loadFavoritesCharacters
         
         // Data-related actions
         case responseReceived(APIResponse<Character>)
@@ -80,6 +84,7 @@ struct CharactersListReducer {
     }
     
     @Dependency(\.characterClient) private var characterClient
+    @Dependency(\.favoriteCharactersClient) private var favoriteCharactersClient
     
     var body: some ReducerOf<Self> {
         BindingReducer()
@@ -94,11 +99,18 @@ struct CharactersListReducer {
                 // Lifecycle actions
             case .enterCharactersList:
                 state.contentState = .loading
-                return .run { await fetchInitialCharacters($0) }
+                return .concatenate(
+                    .send(.loadFavoritesCharacters),
+                    .run { await fetchInitialCharacters($0) }
+                )
                 
             case .returnToIntro:
                 state.resetFilters()
                 state.contentState = .intro
+                return .none
+                
+            case .loadFavoritesCharacters:
+                state.favoriteIds = favoriteCharactersClient.fetchFavoriteCharacters()
                 return .none
                 
                 // Data-related actions
@@ -165,6 +177,9 @@ struct CharactersListReducer {
             case let .characterSelected(character):
                 state.characterDetails = .init(character: character)
                 return .none
+                
+            case .characterDetails(.dismiss):
+                return .send(.loadFavoritesCharacters)
                 
             case .characterDetails:
                 return .none

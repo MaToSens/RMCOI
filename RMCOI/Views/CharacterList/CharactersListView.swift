@@ -60,7 +60,7 @@ struct CharactersListView: View {
                 } destination: { store in
                     CharacterDetailsView(store: store)
                 } label: {
-                    CharacterCellView(character)
+                    CharacterCellView(character, isFavorite: store.favoriteIds.contains(character.id))
                 }
             }
         }
