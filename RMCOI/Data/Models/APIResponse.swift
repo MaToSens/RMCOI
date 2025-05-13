@@ -7,8 +7,6 @@
 
 import Foundation
 
-protocol APIObject: Codable, Equatable { }
-
 struct APIResponse<Object: APIObject>: Codable, Equatable {
     let info: Info
     let results: [Object]

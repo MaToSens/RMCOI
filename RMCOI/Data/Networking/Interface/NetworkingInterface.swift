@@ -13,6 +13,8 @@ protocol EndpointInterface {
     static var base: String { get }
 }
 
+protocol APIObject: Codable, Equatable { }
+
 enum HTTPError: Equatable, Error, CustomStringConvertible {
     case invalidURL
     case networkError(String)

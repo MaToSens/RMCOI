@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Codable, Equatable, Identifiable {
+struct Character: APIObject, Identifiable {
     let id: Int
     let name, status, species, type: String
     let gender: String
@@ -16,6 +16,10 @@ struct Character: Codable, Equatable, Identifiable {
     let episode: [String]
     let url: String
     let created: String
+    
+    var characterStatus: Status {
+        Status(rawValue: status.lowercased()) ?? .unknown
+    }
 }
 
 struct Location: Codable, Equatable {
