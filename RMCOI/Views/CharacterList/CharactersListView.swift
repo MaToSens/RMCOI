@@ -5,7 +5,6 @@
 //  Created by MaTooSens on 13/05/2025.
 //
 
-
 import ComposableArchitecture
 import SwiftUI
 
@@ -17,7 +16,7 @@ struct CharactersListView: View {
         WithPerceptionTracking {
             switch store.contentState {
             case .intro:
-                EmptyView()
+                IntroImageView { store.send(.enterCharactersList) }
             case .loading:
                 ProgressView()
                     .scaleEffect(1.2)
@@ -27,9 +26,6 @@ struct CharactersListView: View {
             case let .failed(errorDescription):
                 FeedbackView.errorView(errorDescription) { store.send(.clearAll) }
             }
-        }
-        .onAppear {
-            store.send(.enterCharactersList)
         }
     }
         
