@@ -16,6 +16,10 @@ struct Character: APIObject, Identifiable {
     let episode: [String]
     let url: String
     let created: String
+    
+    var characterStatus: Status {
+        Status(rawValue: status.lowercased()) ?? .unknown
+    }
 }
 
 struct Location: Codable, Equatable {
