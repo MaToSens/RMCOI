@@ -30,7 +30,7 @@ struct CharacterDetailsView: View {
     }
     
     private func buildCharacterTypeSection(character: Character) -> some View {
-        EpisodeSectionView("Character Type") {
+        CharacterSectionView("Character Type") {
             DetailRow(title: "Gender", value: character.gender)
             DetailRow(title: "Species", value: character.species)
             DetailRow(title: "Origin", value: character.origin?.name)
@@ -39,7 +39,7 @@ struct CharacterDetailsView: View {
     }
     
     private func buildEpisodesSection() -> some View {
-        EpisodeSectionView("Episodes") {
+        CharacterSectionView("Episodes") {
             LazyVGrid(columns: columns){
                 ForEach(store.episodeIDs, id: \.self) { episodeId in
                     
@@ -63,7 +63,7 @@ struct CharacterDetailsView: View {
         VStack {
             Image(systemName: "play.tv.fill")
             
-            Text("Episode: \(episodeId)")
+            Text("Episode: " + episodeId)
         }
         .font(.footnote)
         .foregroundColor(.black)

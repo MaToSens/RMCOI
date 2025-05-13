@@ -1,5 +1,5 @@
 //
-//  EpisodeSectionView.swift
+//  CharacterSectionView.swift
 //  RMCOI
 //
 //  Created by MaTooSens on 13/05/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EpisodeSectionView<Content: View>: View {
+struct CharacterSectionView<Content: View>: View {
     let title: String
     let content: Content
     
