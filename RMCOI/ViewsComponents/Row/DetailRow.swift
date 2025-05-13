@@ -15,12 +15,12 @@ struct DetailRow: View {
         HStack(alignment: .top, spacing: 16) {
             Text(title.capitalized)
                 .font(.headline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .frame(width: 100, alignment: .leading)
             
             Text(value ?? "Unknown")
                 .font(.subheadline)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
     }

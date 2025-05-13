@@ -45,7 +45,7 @@ struct FeedbackView: View {
         Text(title)
             .font(.title)
             .fontWeight(.bold)
-            .foregroundColor(.orange)
+            .foregroundStyle(.orange)
     }
     
     private var descriptionText: some View {
@@ -57,7 +57,7 @@ struct FeedbackView: View {
     private var detailsText: some View {
         Text(.init(detailText))
             .font(.subheadline)
-            .foregroundColor(.secondary)
+            .foregroundStyle(.secondary)
             .padding(.horizontal, 40)
     }
     
@@ -67,7 +67,7 @@ struct FeedbackView: View {
         } label: {
             Text(buttonText)
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
                 .padding()
                 .background(.green)
                 .cornerRadius(10)

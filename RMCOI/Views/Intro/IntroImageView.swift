@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IntroImageView: View {
+struct IntroView: View {
     @State private var animationTrigger = false
     let onTap: () -> Void
  
@@ -34,5 +34,5 @@ struct IntroImageView: View {
 }
 
 #Preview {
-    IntroImageView { }
+    IntroView { }
 }

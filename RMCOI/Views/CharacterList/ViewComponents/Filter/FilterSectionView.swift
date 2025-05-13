@@ -38,7 +38,7 @@ struct FilterSectionView<Filter: RawRepresentable & Hashable & CaseIterable>: Vi
             Text(item.rawValue.capitalized)
                 .font(.callout)
                 .padding(10)
-                .foregroundColor(isSelected ? .white : .primary)
+                .foregroundStyle(isSelected ? Color.white : Color.primary)
                 .background(isSelected ? Color.green : Color.gray.opacity(0.2))
                 .cornerRadius(6)
         }

@@ -24,7 +24,7 @@ struct CharacterStatusView: View {
             
             Text(character.name.uppercased())
                 .font(font)
-                .foregroundColor(.black)
+                .foregroundStyle(.black)
                 .lineLimit(1)
         }
     }

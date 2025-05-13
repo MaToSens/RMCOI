@@ -67,7 +67,7 @@ struct CharacterDetailsView: View {
             Text("Episode: " + episodeId)
         }
         .font(.footnote)
-        .foregroundColor(.black)
+        .foregroundStyle(.black)
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)

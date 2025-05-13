@@ -58,7 +58,7 @@ struct FiltersSheetView: View {
             } label: {
                 Text("Apply filters")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.green)
@@ -70,7 +70,7 @@ struct FiltersSheetView: View {
             } label: {
                 Text("Clear filters")
                     .font(.headline)
-                    .foregroundColor(.green)
+                    .foregroundStyle(.green)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
